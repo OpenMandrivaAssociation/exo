@@ -42,7 +42,7 @@ Summary:	Exo headers, static libraries and documentation
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	%{_lib}%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
 Obsoletes:	%mklibname %{name}-%{apiversion}_ 0 -d
 
 %description -n %{develname}
