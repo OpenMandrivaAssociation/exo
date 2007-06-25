@@ -1,11 +1,12 @@
 %define major 0
 %define apiversion 0.3
 %define libname	%mklibname %{name}-%{apiversion}_ %{major}
+%define develname %mklibname %{name} -d
 
 Summary:	An extension library to Xfce 
 Name:		exo
 Version:	0.3.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPL 
 Group:		System/Libraries 
 URL:		http://www.xfce.org
@@ -36,16 +37,15 @@ This is libexo, an extension library to Xfce, developed by os-cillation.
 While Xfce comes with quite a few libraries that are targeted at 
 desktop development, libexo is targeted at application development.
  
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	Exo headers, static libraries and documentation
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-0.3-devel = %{version}-%{release}
-Obsoletes:	libexo-0.2_0-devel
-Provides:	libexo-0.2_0-devel
+Provides:	%{_lib}%{name}-devel = %{version}-%{release}
+Obsoletes:	%mklibname %{name}-%{apiversion}_ 0 -d
 
-%description -n %{libname}-devel
+%description -n %{develname}
 Exo headers, static libraries and documentation  
 
 %package -n python-%{name}
@@ -68,7 +68,8 @@ of the libexo package.
 	--enable-hal \
 	--enable-xsltproc \
 	--enable-xml2po \
-	--enable-python
+	--enable-python \
+	--disable-static
 
 %make
 
@@ -77,10 +78,9 @@ rm -rf %{buildroot}
 %makeinstall_std
 
 ##rm unneeded file
-rm -f %{buildroot}%{_libdir}/python2.4/site-packages/exo-0.3/_exo.a
 rm -f %{buildroot}%{_libdir}/xfce4/mcs-plugins/exo-preferred-applications-settings.*a
 
-%find_lang lib%{name}-0.3
+%find_lang lib%{name}-%{apiversion}
  
 %clean
 rm -rf %{buildroot}
@@ -111,7 +111,6 @@ rm -rf %{buildroot}
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_mandir}/man1/exo*
-%{_datadir}/icons/hicolor/24x24/apps/preferences-desktop-default-applications.png
 %{_datadir}/pixmaps/exo-0.3/exo-thumbnail-frame.png
 
 %files -n %{libname}
@@ -121,7 +120,7 @@ rm -rf %{buildroot}
 %{_libdir}/*%{apiversion}.so.%{major}*
 %{_libdir}/exo-mount-notify-0.3
 
-%files -n %{libname}-devel -f libexo-0.3.lang
+%files -n %{develname} -f lib%{name}-%{apiversion}.lang
 %defattr(-,root,root) 
 %dir %{_datadir}/gtk-doc/html/%{name}
 %{_datadir}/gtk-doc/html/%{name}/* 
