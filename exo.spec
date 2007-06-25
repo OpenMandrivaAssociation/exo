@@ -113,14 +113,14 @@ rm -rf %{buildroot}
 %{_mandir}/man1/exo*
 %{_datadir}/pixmaps/exo-0.3/exo-thumbnail-frame.png
 
-%files -n %{libname}
+%files -n %{libname} -f lib%{name}-%{apiversion}.lang
 %defattr(-,root,root)
 %{_libdir}/exo-helper-0.3
 %{_libdir}/exo-compose-mail-0.3
 %{_libdir}/*%{apiversion}.so.%{major}*
 %{_libdir}/exo-mount-notify-0.3
 
-%files -n %{develname} -f lib%{name}-%{apiversion}.lang
+%files -n %{develname}
 %defattr(-,root,root) 
 %dir %{_datadir}/gtk-doc/html/%{name}
 %{_datadir}/gtk-doc/html/%{name}/* 
