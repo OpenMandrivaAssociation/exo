@@ -6,11 +6,12 @@
 Summary:	An extension library to Xfce 
 Name:		exo
 Version:	0.3.2
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPL 
 Group:		System/Libraries 
 URL:		http://www.xfce.org
 Source:		%{name}-%{version}.tar.bz2
+Patch0:		%{name}-0.3.2-env-python.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	xfce-mcs-manager-devel
@@ -60,6 +61,7 @@ of the libexo package.
  
 %prep
 %setup -q
+%patch0 -p1
 
 %build 
 %configure2_5x \
