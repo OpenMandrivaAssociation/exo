@@ -6,12 +6,13 @@
 Summary:	An extension library to Xfce 
 Name:		exo
 Version:	0.3.2
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPL 
 Group:		System/Libraries 
 URL:		http://www.xfce.org
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.3.2-env-python.patch
+Patch1:		%{name}-0.3.2-missing-stdio.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	xfce-mcs-manager-devel
@@ -20,7 +21,6 @@ BuildRequires:	python
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	hal-devel
 BuildRequires:	libnotify-devel
-BuildRequires:	gnome-doc-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -62,14 +62,14 @@ of the libexo package.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build 
 %configure2_5x \
-	--enable-gtk-doc \
 	--sysconfdir=%{_sysconfdir}/X11 \
+	--enable-mcs-plugin \
+	--enable-notifications \
 	--enable-hal \
-	--enable-xsltproc \
-	--enable-xml2po \
 	--enable-python \
 	--disable-static
 
@@ -124,8 +124,6 @@ rm -rf %{buildroot}
 
 %files -n %{develname}
 %defattr(-,root,root) 
-%dir %{_datadir}/gtk-doc/html/%{name}
-%{_datadir}/gtk-doc/html/%{name}/* 
 %{_libdir}/lib*.so 
 %{_libdir}/lib*.*a
 %{_libdir}/pkgconfig/exo-*0.3.pc
