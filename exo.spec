@@ -13,6 +13,7 @@ URL:		http://www.xfce.org
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.3.2-env-python.patch
 Patch1:		%{name}-0.3.2-missing-stdio.patch
+Patch2:		%{name}-0.3.2-iocharset.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	xfce-mcs-manager-devel
@@ -63,6 +64,7 @@ of the libexo package.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build 
 %configure2_5x \
