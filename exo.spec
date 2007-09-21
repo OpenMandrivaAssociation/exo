@@ -6,7 +6,7 @@
 Summary:	An extension library to Xfce 
 Name:		exo
 Version:	0.3.2
-Release:	%mkrel 7
+Release:	%mkrel 8
 License:	GPL 
 Group:		System/Libraries 
 URL:		http://www.xfce.org
@@ -108,7 +108,7 @@ rm -rf %{buildroot}
 %doc %{_datadir}/xfce4/doc/ja
 %doc %{_datadir}/xfce4/doc/fr/exo-preferred-applications.html
 %doc %{_datadir}/xfce4/doc/fr/images/*
-%config(noreplace) /%{_sysconfdir}/X11/xdg/xfce4/helpers.rc
+%exclude %{_sysconfdir}/X11/xdg/xfce4/helpers.rc
 %{_bindir}/exo*
 %{_libdir}/xfce4/mcs-plugins/exo-preferred-applications-settings.so
 %{_datadir}/applications/exo-preferred-applications.desktop
