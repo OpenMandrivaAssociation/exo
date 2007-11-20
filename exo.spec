@@ -3,11 +3,11 @@
 %define libname	%mklibname %{name}-%{apiversion}_ %{major}
 %define develname %mklibname %{name} -d
 
-Summary:	An extension library to Xfce 
+Summary:	An extension library to Xfce desktop environment
 Name:		exo
 Version:	0.3.2
-Release:	%mkrel 9
-License:	GPL 
+Release:	%mkrel 10
+License:	GPLv2+
 Group:		System/Libraries 
 URL:		http://www.xfce.org
 Source:		%{name}-%{version}.tar.bz2
@@ -19,7 +19,7 @@ BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	xfce-mcs-manager-devel
 BuildRequires:	startup-notification-devel
-BuildRequires:	python
+%py_requires -d
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	hal-devel
 BuildRequires:	libnotify-devel
@@ -33,15 +33,13 @@ desktop development, libexo is targeted at application development.
 %package -n %{libname}
 Summary:	An extension library to Xfce
 Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description -n %{libname}
-This is libexo, an extension library to Xfce, developed by os-cillation. 
-While Xfce comes with quite a few libraries that are targeted at 
-desktop development, libexo is targeted at application development.
+Main library for the libexo.
  
 %package -n %{develname}
-Summary:	Exo headers, static libraries and documentation
+Summary:	Headers, static libraries and documentation for libexo
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
@@ -49,7 +47,7 @@ Provides:	lib%{name}-devel = %{version}-%{release}
 Obsoletes:	%mklibname %{name}-%{apiversion}_ 0 -d
 
 %description -n %{develname}
-Exo headers, static libraries and documentation  
+Headers, static libraries and documentation for libexo.
 
 %package -n python-%{name}
 Summary:	Python bindings for the exo library
@@ -105,7 +103,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS README COPYING HACKING INSTALL TODO
+%doc AUTHORS README HACKING ChangeLog TODO
 %doc %{_datadir}/xfce4/doc/C
 %doc %{_datadir}/xfce4/doc/ja
 %doc %{_datadir}/xfce4/doc/fr/exo-preferred-applications.html
