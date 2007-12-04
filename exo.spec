@@ -5,16 +5,15 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.2
-Release:	%mkrel 10
+Version:	0.3.4
+Release:	%mkrel 1
 License:	GPLv2+
-Group:		System/Libraries 
+Group:		System/Libraries
 URL:		http://www.xfce.org
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.3.2-env-python.patch
-Patch1:		%{name}-0.3.2-missing-stdio.patch
 Patch2:		%{name}-0.3.2-iocharset.patch
-Patch3:		%{name}-0.3.2-eject-volume.patch
+Patch3:         %{name}-0.3.2-eject-volume.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	xfce-mcs-manager-devel
@@ -26,10 +25,10 @@ BuildRequires:	libnotify-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
-This is libexo, an extension library to Xfce, developed by os-cillation. 
-While Xfce comes with quite a few libraries that are targeted at 
-desktop development, libexo is targeted at application development. 
- 
+This is libexo, an extension library to Xfce, developed by os-cillation.
+While Xfce comes with quite a few libraries that are targeted at
+desktop development, libexo is targeted at application development.
+
 %package -n %{libname}
 Summary:	An extension library to Xfce
 Group:		System/Libraries
@@ -37,7 +36,7 @@ Requires:	%{name} = %{version}-%{release}
 
 %description -n %{libname}
 Main library for the libexo.
- 
+
 %package -n %{develname}
 Summary:	Headers, static libraries and documentation for libexo
 Group:		Development/C
@@ -58,15 +57,14 @@ BuildRequires:	pygtk2.0-devel
 This package contains a module that allow monitoring of
 files and directories from the Python language based on the support
 of the libexo package.
- 
+
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 
-%build 
+%build
 %configure2_5x \
 	--sysconfdir=%{_sysconfdir}/X11 \
 	--enable-mcs-plugin \
@@ -85,7 +83,7 @@ rm -rf %{buildroot}
 rm -f %{buildroot}%{_libdir}/xfce4/mcs-plugins/exo-preferred-applications-settings.*a
 
 %find_lang lib%{name}-%{apiversion}
- 
+
 %clean
 rm -rf %{buildroot}
 
@@ -116,6 +114,7 @@ rm -rf %{buildroot}
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_mandir}/man1/exo*
 %{_datadir}/pixmaps/exo-0.3/exo-thumbnail-frame.png
+%{_datadir}/gtk-doc/html/%{name}/*
 
 %files -n %{libname} -f lib%{name}-%{apiversion}.lang
 %defattr(-,root,root)
@@ -125,15 +124,15 @@ rm -rf %{buildroot}
 %{_libdir}/exo-mount-notify-0.3
 
 %files -n %{develname}
-%defattr(-,root,root) 
-%{_libdir}/lib*.so 
+%defattr(-,root,root)
+%{_libdir}/lib*.so
 %{_libdir}/lib*.*a
 %{_libdir}/pkgconfig/exo-*0.3.pc
 %{_includedir}/*
 
 %files -n python-%{name}
 %defattr(-,root,root)
-%doc python/examples/README python/examples/ellipsizing.py python/examples/toolbars.py 
+%doc python/examples/README python/examples/ellipsizing.py python/examples/toolbars.py
 %{_datadir}/pygtk/2.0/defs/exo-0.3
-%{_libdir}/python*/site-packages/exo-0.3 
+%{_libdir}/python*/site-packages/exo-0.3
 %{py_sitedir}/pyexo*
