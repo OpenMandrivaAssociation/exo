@@ -22,6 +22,7 @@ BuildRequires:	startup-notification-devel
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	hal-devel
 BuildRequires:	libnotify-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 This is libexo, an extension library to Xfce, developed by os-cillation.
