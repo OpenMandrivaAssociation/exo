@@ -108,7 +108,11 @@ rm -rf %{buildroot}
 %doc %{_datadir}/xfce4/doc/ja
 %doc %{_datadir}/xfce4/doc/fr/exo-preferred-applications.html
 %doc %{_datadir}/xfce4/doc/fr/images/*
+%if %mdkversion < 200900
 %exclude %{_sysconfdir}/X11/xdg/xfce4/helpers.rc
+%else
+%exclude %{_sysconfdir}/xdg/xfce4/helpers.rc
+%endif
 %{_bindir}/exo*
 %{_libdir}/xfce4/mcs-plugins/exo-preferred-applications-settings.so
 %{_datadir}/applications/exo-preferred-applications.desktop
