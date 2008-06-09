@@ -89,9 +89,13 @@ rm -f %{buildroot}%{_libdir}/xfce4/mcs-plugins/exo-preferred-applications-settin
 %clean
 rm -rf %{buildroot}
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %post
 %{update_menus}
