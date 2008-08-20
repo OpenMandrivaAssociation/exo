@@ -12,9 +12,11 @@ Group:		System/Libraries
 URL:		http://www.xfce.org
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.3.2-env-python.patch
+# (tpg) http://bugzilla.xfce.org/show_bug.cgi?id=3349
+Patch1:		%{name}-0.3.4-LUKS-encryption-support.patch
 Patch2:		%{name}-0.3.2-iocharset.patch
 Patch3:         %{name}-0.3.2-eject-volume.patch
-Patch4:		exo-linkage_fix.diff
+Patch4:		%{name}-linkage_fix.diff
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	xfce-mcs-manager-devel
@@ -23,6 +25,7 @@ BuildRequires:	startup-notification-devel
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	hal-devel
 BuildRequires:	libnotify-devel
+BuildRequires:	intltool
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -62,11 +65,15 @@ of the libexo package.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 
 %build
+# (tpg) needed for patch 4
+NOCONFIGURE=1 xdt-autogen
+
 %configure2_5x \
 %if %mdkversion < 200900
 	--sysconfdir=%{_sysconfdir}/X11 \
