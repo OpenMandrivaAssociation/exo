@@ -14,6 +14,7 @@ Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.3.2-env-python.patch
 Patch2:		%{name}-0.3.2-iocharset.patch
 Patch3:         %{name}-0.3.2-eject-volume.patch
+Patch4:		exo-linkage_fix.diff
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	xfce-mcs-manager-devel
@@ -63,6 +64,7 @@ of the libexo package.
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %configure2_5x \
