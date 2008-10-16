@@ -5,22 +5,18 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.4
-Release:	%mkrel 5
+Version:	0.3.91
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source:		%{name}-%{version}.tar.bz2
-Patch0:		%{name}-0.3.2-env-python.patch
-# (tpg) http://bugzilla.xfce.org/show_bug.cgi?id=3349
-Patch1:		%{name}-0.3.4-LUKS-encryption-support.patch
 Patch2:		%{name}-0.3.2-iocharset.patch
 Patch3:         %{name}-0.3.2-eject-volume.patch
 Patch4:		%{name}-linkage_fix.diff
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
-BuildRequires:	xfce-mcs-manager-devel
-BuildRequires:	startup-notification-devel
+#BuildRequires:	startup-notification-devel
 %py_requires -d
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	hal-devel
@@ -64,8 +60,6 @@ of the libexo package.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p0
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -78,7 +72,6 @@ NOCONFIGURE=1 xdt-autogen
 %if %mdkversion < 200900
 	--sysconfdir=%{_sysconfdir}/X11 \
 %endif
-	--enable-mcs-plugin \
 	--enable-notifications \
 	--enable-hal \
 	--enable-python \
@@ -89,9 +82,6 @@ NOCONFIGURE=1 xdt-autogen
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-
-##rm unneeded file
-rm -f %{buildroot}%{_libdir}/xfce4/mcs-plugins/exo-preferred-applications-settings.*a
 
 %find_lang lib%{name}-%{apiversion}
 
@@ -131,7 +121,6 @@ rm -rf %{buildroot}
 %exclude %{_sysconfdir}/xdg/xfce4/helpers.rc
 %endif
 %{_bindir}/exo*
-%{_libdir}/xfce4/mcs-plugins/exo-preferred-applications-settings.so
 %{_datadir}/applications/exo-preferred-applications.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
