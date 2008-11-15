@@ -5,7 +5,7 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.91
+Version:	0.3.92
 Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Libraries
@@ -16,7 +16,7 @@ Patch3:         %{name}-0.3.2-eject-volume.patch
 Patch4:		%{name}-linkage_fix.diff
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
-#BuildRequires:	startup-notification-devel
+BuildRequires:	gtk-doc
 %py_requires -d
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	hal-devel
@@ -75,7 +75,8 @@ NOCONFIGURE=1 xdt-autogen
 	--enable-notifications \
 	--enable-hal \
 	--enable-python \
-	--disable-static
+	--disable-static \
+	--enable-gtk-doc
 
 %make
 
