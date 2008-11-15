@@ -10,7 +10,7 @@ Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
-Source:		%{name}-%{version}.tar.bz2
+Source:		http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
 Patch2:		%{name}-0.3.2-iocharset.patch
 Patch3:         %{name}-0.3.2-eject-volume.patch
 Patch4:		%{name}-linkage_fix.diff
