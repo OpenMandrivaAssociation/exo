@@ -6,7 +6,7 @@
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
 Version:	0.3.92
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
@@ -18,7 +18,6 @@ Patch4:		%{name}-linkage_fix.diff
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel
 BuildRequires:	gtk-doc
-%py_requires -d
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	hal-devel
 BuildRequires:	libnotify-devel
@@ -52,6 +51,7 @@ Headers, static libraries and documentation for libexo.
 %package -n python-%{name}
 Summary:	Python bindings for the exo library
 Group:		Development/Python
+%py_requires -d
 BuildRequires:	pygtk2.0-devel
 
 %description -n python-%{name}
