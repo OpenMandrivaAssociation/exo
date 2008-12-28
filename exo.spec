@@ -6,11 +6,12 @@
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
 Version:	0.3.92
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source:		http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
+Patch:		exo-0.3.92-format-strings.patch
 Patch2:		%{name}-0.3.2-iocharset.patch
 Patch3:         %{name}-0.3.2-eject-volume.patch
 Patch4:		%{name}-linkage_fix.diff
@@ -60,6 +61,7 @@ of the libexo package.
 
 %prep
 %setup -q
+%patch -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
