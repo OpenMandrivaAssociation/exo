@@ -6,7 +6,7 @@
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
 Version:	0.3.101
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
@@ -62,8 +62,8 @@ of the libexo package.
 
 %prep
 %setup -q
-#patch2 -p1
-#patch3 -p1
+%patch2 -p1
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
