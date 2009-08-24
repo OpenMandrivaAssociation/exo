@@ -5,8 +5,8 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.101
-Release:	%mkrel 4
+Version:	0.3.102
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
@@ -15,9 +15,6 @@ Patch2:		%{name}-0.3.2-iocharset.patch
 Patch3:         %{name}-0.3.2-eject-volume.patch
 Patch4:		%{name}-linkage_fix.diff
 Patch5:		%{name}-0.3.99.1-noatime.patch
-Patch6:		exo-0.3.101-ignore_unknown_options.patch
-# (tpg) https://qa.mandriva.com/show_bug.cgi?id=52386
-Patch7:		exo-0.3.101-fix_sigsev_in_exo_icon_view_get_item_at_pos.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel >= 4.6.0
 BuildRequires:	gtk-doc
@@ -68,8 +65,6 @@ of the libexo package.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
 
 %build
 # (tpg) needed for patch 4
