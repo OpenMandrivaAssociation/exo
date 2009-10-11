@@ -1,3 +1,4 @@
+%define url_ver %(echo %{version} | cut -c 1-3)
 %define major 0
 %define apiversion 0.3
 %define libname	%mklibname %{name}-%{apiversion}_ %{major}
@@ -5,16 +6,14 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.102
+Version:	0.3.104
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
-Source:		http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-Patch2:		%{name}-0.3.2-iocharset.patch
-Patch3:         %{name}-0.3.2-eject-volume.patch
+Source:		http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
 Patch4:		%{name}-linkage_fix.diff
-Patch5:		%{name}-0.3.99.1-noatime.patch
+Patch5:		%{name}-0.3.104-noatime.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel >= 4.6.0
 BuildRequires:	gtk-doc
@@ -61,8 +60,6 @@ of the libexo package.
 
 %prep
 %setup -q
-%patch2 -p1
-%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 
