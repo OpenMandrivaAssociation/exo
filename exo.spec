@@ -6,14 +6,14 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.104
+Version:	0.3.105
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source:		http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
 Patch4:		%{name}-linkage_fix.diff
-Patch5:		%{name}-0.3.104-noatime.patch
+Patch5:		%{name}-0.3.105-noatime.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel >= 4.6.0
 BuildRequires:	gtk-doc
@@ -108,33 +108,30 @@ rm -rf %{buildroot}
 %clean_icon_cache hicolor
 %endif
 
-%files
+%files -f lib%{name}-%{apiversion}.lang
 %defattr(-,root,root)
 %doc AUTHORS README HACKING ChangeLog TODO
-%doc %{_datadir}/xfce4/doc/C
-%doc %{_datadir}/xfce4/doc/ja
-%doc %{_datadir}/xfce4/doc/fr/exo-preferred-applications.html
-%doc %{_datadir}/xfce4/doc/fr/images/*
 %if %mdkversion < 200900
 %exclude %{_sysconfdir}/X11/xdg/xfce4/helpers.rc
 %else
 %exclude %{_sysconfdir}/xdg/xfce4/helpers.rc
 %endif
 %{_bindir}/exo*
+%{_libdir}/exo-helper-0.3
+%{_libdir}/exo-compose-mail-0.3
+%{_libdir}/exo-mount-notify-0.3
 %{_datadir}/applications/exo-preferred-applications.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_mandir}/man1/exo*
 %{_datadir}/pixmaps/exo-0.3/exo-thumbnail-frame.png
-%{_datadir}/gtk-doc/html/%{name}/*
-%{_datadir}/xfce4/doc/*
+%{_datadir}/gtk-doc/html/%{name}-%{apiversion}/*
+%{_sysconfdir}/xdg/xfce4/mount.rc
+%{_datadir}/xfce4/doc/
 
-%files -n %{libname} -f lib%{name}-%{apiversion}.lang
+%files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/exo-helper-0.3
-%{_libdir}/exo-compose-mail-0.3
 %{_libdir}/*%{apiversion}.so.%{major}*
-%{_libdir}/exo-mount-notify-0.3
 
 %files -n %{develname}
 %defattr(-,root,root)
