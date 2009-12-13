@@ -6,14 +6,13 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.105
-Release:	%mkrel 2
+Version:	0.3.106
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source:		http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
 Patch4:		%{name}-linkage_fix.diff
-Patch6:		exo-0.3.105-sync-devices-with-no-volume.patch
 Patch7:		exo-0.3.105-use-utf8-by-default.patch
 Patch8:		exo-0.3.105-notification-expires.patch
 BuildRequires:	gtk2-devel
@@ -63,7 +62,6 @@ of the libexo package.
 %prep
 %setup -q
 %patch4 -p1
-%patch6 -p1
 %patch7 -p1
 %patch8 -p1
 
