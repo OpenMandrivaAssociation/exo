@@ -6,8 +6,8 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.106
-Release:	%mkrel 2
+Version:	0.3.107
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
@@ -15,9 +15,6 @@ Source:		http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.
 Patch0:		%{name}-linkage_fix.diff
 Patch1:		exo-0.3.105-use-utf8-by-default.patch
 Patch2:		exo-0.3.105-notification-expires.patch
-# (ahmad) add upstream patch to make treeview work with gtk 2.20
-# http://bugzilla.xfce.org/show_bug.cgi?id=6230
-Patch3:		exo-0.3.106-fix-treeview.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel >= 4.6.0
 BuildRequires:	gtk-doc
@@ -67,7 +64,6 @@ of the libexo package.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1 -b .treeview
 
 %build
 # (tpg) needed for patch 4
@@ -116,7 +112,7 @@ rm -rf %{buildroot}
 
 %files -f lib%{name}-%{apiversion}.lang
 %defattr(-,root,root)
-%doc AUTHORS README HACKING ChangeLog TODO
+%doc AUTHORS README ChangeLog TODO
 %if %mdkversion < 200900
 %exclude %{_sysconfdir}/X11/xdg/xfce4/helpers.rc
 %else
