@@ -1,17 +1,17 @@
 %define url_ver %(echo %{version} | cut -c 1-3)
 %define major 0
-%define apiversion 0.3
+%define apiversion 1
 %define libname	%mklibname %{name}-%{apiversion}_ %{major}
 %define develname %mklibname %{name} -d
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.3.107
+Version:	0.5.4
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
-Source:		http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
+Source:		http://archive.xfce.org/src/xfce/%{name}/%{url_ver}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-linkage_fix.diff
 Patch1:		exo-0.3.105-use-utf8-by-default.patch
 Patch2:		exo-0.3.105-notification-expires.patch
@@ -61,13 +61,11 @@ of the libexo package.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
 
 %build
-# (tpg) needed for patch 4
-NOCONFIGURE=1 xdt-autogen
 
 %configure2_5x \
 %if %mdkversion < 200900
@@ -85,7 +83,7 @@ NOCONFIGURE=1 xdt-autogen
 rm -rf %{buildroot}
 %makeinstall_std
 
-%find_lang lib%{name}-%{apiversion}
+%find_lang %{name}-%{apiversion}
 
 %clean
 rm -rf %{buildroot}
@@ -110,7 +108,7 @@ rm -rf %{buildroot}
 %clean_icon_cache hicolor
 %endif
 
-%files -f lib%{name}-%{apiversion}.lang
+%files -f %{name}-%{apiversion}.lang
 %defattr(-,root,root)
 %doc AUTHORS README ChangeLog TODO
 %if %mdkversion < 200900
@@ -119,17 +117,15 @@ rm -rf %{buildroot}
 %exclude %{_sysconfdir}/xdg/xfce4/helpers.rc
 %endif
 %{_bindir}/exo*
-%{_libdir}/exo-helper-0.3
-%{_libdir}/exo-compose-mail-0.3
-%{_libdir}/exo-mount-notify-0.3
-%{_datadir}/applications/exo-preferred-applications.desktop
+%{_libdir}/xfce4/%{name}-%{apiversion}/exo-helper-%{apiversion}
+%{_libdir}/xfce4/%{name}-%{apiversion}/exo-compose-mail-%{apiversion}
+%{_datadir}/applications/*.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_mandir}/man1/exo*
-%{_datadir}/pixmaps/exo-0.3/exo-thumbnail-frame.png
+%{_datadir}/pixmaps/exo-%{apiversion}/exo-thumbnail-frame.png
 %{_datadir}/gtk-doc/html/%{name}-%{apiversion}/*
-%{_sysconfdir}/xdg/xfce4/mount.rc
-%{_datadir}/xfce4/doc/
+%{_libdir}/gio/modules/libexo-module-%{apiversion}.*
 
 %files -n %{libname}
 %defattr(-,root,root)
@@ -139,12 +135,12 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_libdir}/lib*.so
 %{_libdir}/lib*.*a
-%{_libdir}/pkgconfig/exo-*0.3.pc
+%{_libdir}/pkgconfig/exo-*%{apiversion}.pc
 %{_includedir}/*
 
 %files -n python-%{name}
 %defattr(-,root,root)
 %doc python/examples/README python/examples/ellipsizing.py python/examples/toolbars.py
-%{_datadir}/pygtk/2.0/defs/exo-0.3
-%{_libdir}/python*/site-packages/exo-0.3
+%{_datadir}/pygtk/2.0/defs/exo*
+%{_libdir}/python*/site-packages/exo*
 %{py_sitedir}/pyexo*
