@@ -71,8 +71,7 @@ of the libexo package.
 %if %mdkversion < 200900
 	--sysconfdir=%{_sysconfdir}/X11 \
 %endif
-	--enable-notifications \
-	--enable-hal \
+	--enable-gio-unix \
 	--enable-python \
 	--disable-static \
 	--enable-gtk-doc
