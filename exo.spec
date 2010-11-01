@@ -110,11 +110,7 @@ rm -rf %{buildroot}
 %files -f %{name}-%{apiversion}.lang
 %defattr(-,root,root)
 %doc AUTHORS README ChangeLog TODO
-%if %mdkversion < 200900
-%exclude %{_sysconfdir}/X11/xdg/xfce4/helpers.rc
-%else
 %exclude %{_sysconfdir}/xdg/xfce4/helpers.rc
-%endif
 %{_bindir}/exo*
 %{_libdir}/xfce4/%{name}-%{apiversion}/exo-helper-%{apiversion}
 %{_libdir}/xfce4/%{name}-%{apiversion}/exo-compose-mail-%{apiversion}
