@@ -82,6 +82,9 @@ of the libexo package.
 rm -rf %{buildroot}
 %makeinstall_std
 
+# (tpg) already in mandriva-xfce-config package
+rm -rf %{_sysconfdir}/xdg/xfce4/helpers.rc
+
 %find_lang %{name}-%{apiversion}
 
 %clean
@@ -110,7 +113,6 @@ rm -rf %{buildroot}
 %files -f %{name}-%{apiversion}.lang
 %defattr(-,root,root)
 %doc AUTHORS README ChangeLog TODO
-%exclude %{_sysconfdir}/xdg/xfce4/helpers.rc
 %{_bindir}/exo*
 %{_libdir}/xfce4/%{name}-%{apiversion}/exo-helper-%{apiversion}
 %{_libdir}/xfce4/%{name}-%{apiversion}/exo-compose-mail-%{apiversion}
