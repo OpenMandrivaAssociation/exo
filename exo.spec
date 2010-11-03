@@ -83,7 +83,7 @@ rm -rf %{buildroot}
 %makeinstall_std
 
 # (tpg) already in mandriva-xfce-config package
-rm -rf %{_sysconfdir}/xdg/xfce4/helpers.rc
+rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
 
 %find_lang %{name}-%{apiversion}
 
