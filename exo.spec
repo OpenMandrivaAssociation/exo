@@ -6,8 +6,8 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.5.4
-Release:	%mkrel 2
+Version:	0.5.5
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
