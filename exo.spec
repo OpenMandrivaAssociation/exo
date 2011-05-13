@@ -6,15 +6,12 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.6.0
+Version:	0.6.1
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source:		http://archive.xfce.org/src/xfce/%{name}/%{url_ver}/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-linkage_fix.diff
-Patch1:		exo-0.3.105-use-utf8-by-default.patch
-Patch2:		exo-0.3.105-notification-expires.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel >= 4.6.0
 BuildRequires:	gtk-doc
@@ -61,9 +58,6 @@ of the libexo package.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
 
 %build
 
@@ -122,7 +116,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/exo*
 %{_datadir}/pixmaps/exo-%{apiversion}/exo-thumbnail-frame.png
 %{_datadir}/gtk-doc/html/%{name}-%{apiversion}/*
-%{_libdir}/gio/modules/libexo-module-%{apiversion}.*
 
 %files -n %{libname}
 %defattr(-,root,root)
