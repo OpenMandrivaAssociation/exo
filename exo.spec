@@ -7,7 +7,7 @@
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
 Version:	0.6.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
@@ -16,7 +16,11 @@ BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel >= 4.6.0
 BuildRequires:	gtk-doc
 BuildRequires:	perl(URI::Escape)
+%if %mdkver >= 201200
+BuildConflicts:	hal-devel
+%else
 BuildRequires:	hal-devel
+%endif
 BuildRequires:	libnotify-devel
 BuildRequires:	intltool
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
