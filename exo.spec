@@ -1,4 +1,4 @@
-%define url_ver %(echo %{version} | cut -c 1-3)
+%define url_ver %(echo %{version} | cut -d. -f1,2)
 %define major 0
 %define apiversion 1
 %define libname	%mklibname %{name}-%{apiversion}_ %{major}
@@ -7,7 +7,7 @@
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
 Version:	0.6.2
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
@@ -66,9 +66,6 @@ of the libexo package.
 %build
 
 %configure2_5x \
-%if %mdkversion < 200900
-	--sysconfdir=%{_sysconfdir}/X11 \
-%endif
 	--enable-gio-unix \
 	--enable-python \
 	--disable-static \
@@ -83,32 +80,16 @@ rm -rf %{buildroot}
 # (tpg) already in mandriva-xfce-config package
 rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
 
-%find_lang %{name}-%{apiversion}
+# (tpg) drop static libraries
+rm -rf %{buildroot}%{libdir}/*.a
+rm -rf %{buildroot}%{libdir}/*.la
+
+%find_lang %{name} %{name}.lang
 
 %clean
 rm -rf %{buildroot}
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%clean_icon_cache hicolor
-%endif
-
-%files -f %{name}-%{apiversion}.lang
+%files -f %{name}.lang
 %defattr(-,root,root)
 %doc AUTHORS README ChangeLog TODO
 %{_bindir}/exo*
@@ -128,7 +109,6 @@ rm -rf %{buildroot}
 %files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/lib*.so
-%{_libdir}/lib*.*a
 %{_libdir}/pkgconfig/exo-*%{apiversion}.pc
 %{_includedir}/*
 
