@@ -11,7 +11,9 @@ Release:	%mkrel 5
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
-Source:		http://archive.xfce.org/src/xfce/%{name}/%{url_ver}/%{name}-%{version}.tar.bz2
+Source0:	http://archive.xfce.org/src/xfce/%{name}/%{url_ver}/%{name}-%{version}.tar.bz2
+Patch0:		exo-0.6.2-fix-glib-linking.patch
+Patch1:		exo-0.6.2-fix-lm-linking.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfcegui4-devel >= 4.6.0
 BuildRequires:	gtk-doc
@@ -62,8 +64,12 @@ of the libexo package.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
+# (tpg) needed for both patches
+NOCONFIGURE=1 xdt-autogen
 
 %configure2_5x \
 	--enable-gio-unix \
