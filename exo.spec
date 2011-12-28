@@ -90,7 +90,7 @@ rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
 rm -rf %{buildroot}%{libdir}/*.a
 rm -rf %{buildroot}%{libdir}/*.la
 
-%find_lang %{name} %{name}.lang
+%find_lang %{name}-%{apiversion} %{name}.lang
 
 %clean
 rm -rf %{buildroot}
