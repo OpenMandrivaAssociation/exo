@@ -79,6 +79,7 @@ rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_mandir}/man1/exo*
 %{_datadir}/pixmaps/exo-%{apiversion}/exo-thumbnail-frame.png
+%{_datadir}/gtk-doc/html/%{name}-%{apiversion}/*
 
 %files -n %{libname}
 %{_libdir}/*%{apiversion}.so.%{major}*
