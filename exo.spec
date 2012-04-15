@@ -15,7 +15,7 @@ Source0:	http://archive.xfce.org/src/xfce/%{name}/%{url_ver}/%{name}-%{version}.
 BuildRequires:	gtk2-devel
 BuildRequires:	libxfce4util-devel >= 4.9.0
 BuildRequires:	libxfce4ui-devel >= 4.9.1
-#BuildRequires:	gtk-doc
+BuildRequires:	gtk-doc
 BuildRequires:	perl(URI::Escape)
 %if %mdkver >= 201200
 BuildConflicts:	hal-devel
