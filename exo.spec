@@ -6,15 +6,15 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.7.3
+Version:	0.8.0
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source0:	http://archive.xfce.org/src/xfce/%{name}/%{url_ver}/%{name}-%{version}.tar.bz2
 BuildRequires:	gtk2-devel
-BuildRequires:	libxfce4util-devel >= 4.9.0
-BuildRequires:	libxfce4ui-devel >= 4.9.1
+BuildRequires:	libxfce4util-devel >= 4.10.0
+BuildRequires:	libxfce4ui-devel >= 4.10.0
 BuildRequires:	perl(URI::Escape)
 %if %mdkver >= 201200
 BuildConflicts:	hal-devel
