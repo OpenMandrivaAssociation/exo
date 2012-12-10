@@ -1,29 +1,22 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
-%define major 0
-%define apiversion 1
-%define libname	%mklibname %{name}-%{apiversion}_ %{major}
-%define develname %mklibname %{name} -d
+
+%define major		0
+%define api		1
+%define libname		%mklibname %{name} %{api} %{major}
+%define develname	%mklibname %{name} -d
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.8.0
+Version:	0.10.1
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
-Source0:	http://archive.xfce.org/src/xfce/%{name}/%{url_ver}/%{name}-%{version}.tar.bz2
-BuildRequires:	gtk2-devel
-BuildRequires:	libxfce4util-devel >= 4.10.0
-BuildRequires:	libxfce4ui-devel >= 4.10.0
-BuildRequires:	perl(URI::Escape)
-%if %mdkver >= 201200
-BuildConflicts:	hal-devel
-%else
-BuildRequires:	hal-devel
-%endif
-BuildRequires:	libnotify-devel
+Source0:	http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(libxfce4util-1.0) >= 4.9.0
+BuildRequires:	pkgconfig(libxfce4ui-1) >= 4.9.0
 BuildRequires:	intltool
-Obsoletes:	python-exo < 0.7.2
 
 %description
 This is libexo, an extension library to Xfce, developed by os-cillation.
@@ -33,7 +26,9 @@ desktop development, libexo is targeted at application development.
 %package -n %{libname}
 Summary:	An extension library to Xfce
 Group:		System/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} >= %{version}
+#Added 01/2012 (wally)
+Obsoletes:	%{_lib}%{name}-1_0 < 0.7.0
 
 %description -n %{libname}
 Main library for the libexo.
@@ -41,10 +36,11 @@ Main library for the libexo.
 %package -n %{develname}
 Summary:	Headers, static libraries and documentation for libexo
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
-Obsoletes:	%mklibname %{name}-%{apiversion}_ 0 -d
+Requires:	%{libname} = %{version}
+Provides:	%{name}-devel = %{EVRD}
+Provides:	lib%{name}-devel = %{EVRD}
+Obsoletes:	%{_lib}exo1_0-devel
+Conflicts:	%{name} < 0.7.0
 
 %description -n %{develname}
 Headers, static libraries and documentation for libexo.
@@ -53,38 +49,39 @@ Headers, static libraries and documentation for libexo.
 %setup -q
 
 %build
-
 %configure2_5x \
-	--enable-gio-unix \
-	--disable-static \
-	--disable-gtk-doc
+	--disable-static
 
 %make
 
 %install
 %makeinstall_std
 
-# (tpg) already in mandriva-xfce-config package
-rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
+# (tpg) already in %{_real_vendor}-xfce-config package
+#rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
 
-%find_lang %{name}-%{apiversion} %{name}.lang
+# don't ship .la
+find %{buildroot} -name "*.la" -delete
 
-%files -f %{name}.lang
+%find_lang %{name}-%{api}
+
+%files -f %{name}-%{api}.lang
 %doc AUTHORS README ChangeLog TODO
 %{_bindir}/exo*
-%{_libdir}/xfce4/%{name}-%{apiversion}/exo-helper-%{apiversion}
-%{_libdir}/xfce4/%{name}-%{apiversion}/exo-compose-mail-%{apiversion}
+%{_libexecdir}/xfce4/%{name}-%{api}/exo-helper-%{api}
+%{_libexecdir}/xfce4/%{name}-%{api}/exo-compose-mail-%{api}
 %{_datadir}/applications/*.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_mandir}/man1/exo*
-%{_datadir}/pixmaps/exo-%{apiversion}/exo-thumbnail-frame.png
-%{_datadir}/gtk-doc/html/%{name}-%{apiversion}/*
+%{_datadir}/pixmaps/exo-%{api}/exo-thumbnail-frame.png
+%{_sysconfdir}/xdg/xfce4/helpers.rc
 
 %files -n %{libname}
-%{_libdir}/*%{apiversion}.so.%{major}*
+%{_libdir}/lib%{name}-%{api}.so.%{major}*
 
 %files -n %{develname}
-%{_libdir}/lib*.so
-%{_libdir}/pkgconfig/exo-*%{apiversion}.pc
+%doc %{_datadir}/gtk-doc/html/%{name}-%{api}/
+%{_libdir}/lib%{name}-%{api}.so
+%{_libdir}/pkgconfig/%{name}-%{api}.pc
 %{_includedir}/*
