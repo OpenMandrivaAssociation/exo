@@ -16,6 +16,9 @@ Source0:	http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(libxfce4util-1.0) >= 4.9.0
 BuildRequires:	pkgconfig(libxfce4ui-1) >= 4.9.0
+BuildRequires:	perl(URI::Escape)
+BuildRequires:	perl(URI::file)
+BuildRequires:	perl(URI::URL)
 BuildRequires:	intltool
 
 %description
