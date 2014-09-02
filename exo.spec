@@ -1,9 +1,9 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
 
-%define major		0
-%define api		1
-%define libname		%mklibname %{name} %{api} %{major}
-%define develname	%mklibname %{name} -d
+%define major 0
+%define api 1
+%define libname %mklibname %{name} %{api} %{major}
+%define develname %mklibname %{name} -d
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
