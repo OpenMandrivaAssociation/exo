@@ -1,21 +1,21 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
 
-%define major		0
-%define api		1
-%define libname		%mklibname %{name} %{api} %{major}
-%define develname	%mklibname %{name} -d
+%define major 0
+%define api 1
+%define libname %mklibname %{name} %{api} %{major}
+%define develname %mklibname %{name} -d
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
 Version:	0.10.2
-Release:	7
+Release:	4
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source0:	http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(libxfce4util-1.0) >= 4.9.0
-BuildRequires:	pkgconfig(libxfce4ui-1) >= 4.9.0
+BuildRequires:	pkgconfig(libxfce4util-1.0) >= 4.11.0
+BuildRequires:	pkgconfig(libxfce4ui-1) >= 4.11.0
 BuildRequires:	pkgconfig(gio-unix-2.0)
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	perl(URI::file)
@@ -72,8 +72,8 @@ find %{buildroot} -name "*.la" -delete
 %files -f %{name}-%{api}.lang
 %doc AUTHORS README ChangeLog TODO
 %{_bindir}/exo*
-%{_libexecdir}/xfce4/%{name}-%{api}/exo-helper-%{api}
-%{_libexecdir}/xfce4/%{name}-%{api}/exo-compose-mail-%{api}
+%{_libdir}/xfce4/%{name}-%{api}/exo-helper-%{api}
+%{_libdir}/xfce4/%{name}-%{api}/exo-compose-mail-%{api}
 %{_datadir}/applications/*.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
