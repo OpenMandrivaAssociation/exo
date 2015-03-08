@@ -77,6 +77,7 @@ find %{buildroot} -name "*.la" -delete
 %{_datadir}/applications/*.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
+%{_iconsdir}/hicolor/*/categories/*.png
 %{_mandir}/man1/exo*
 %{_datadir}/pixmaps/exo-%{api}/exo-thumbnail-frame.png
 
