@@ -7,15 +7,15 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.10.2
-Release:	5
+Version:	0.10.3
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source0:	http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(libxfce4util-1.0) >= 4.11.0
-BuildRequires:	pkgconfig(libxfce4ui-1) >= 4.11.0
+BuildRequires:	pkgconfig(libxfce4util-1.0) >= 4.12.0
+BuildRequires:	pkgconfig(libxfce4ui-1) >= 4.12.0
 BuildRequires:	pkgconfig(gio-unix-2.0)
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	perl(URI::file)
@@ -53,7 +53,7 @@ Headers, static libraries and documentation for libexo.
 %setup -q
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static
 
 %make
