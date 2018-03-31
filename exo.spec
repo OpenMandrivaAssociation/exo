@@ -1,13 +1,17 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
+%define _disable_rebuild_configure 1
 
 %define major 0
 %define api 1
 %define libname %mklibname %{name} %{api} %{major}
 %define develname %mklibname %{name} -d
 
+%define api2 2
+%define lib2name %mklibname %{name} %{api2} %{major}
+
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.10.4
+Version:	0.12.0
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -37,10 +41,19 @@ Obsoletes:	%{_lib}%{name}-1_0 < 0.7.0
 %description -n %{libname}
 Main library for the libexo.
 
+%package -n %{lib2name}
+Summary:        An extension library to Xfce
+Group:          System/Libraries
+Requires:       %{name} >= %{version}
+
+%description -n %{lib2name}
+Main library for the libexo
+
 %package -n %{develname}
 Summary:	Headers, static libraries and documentation for libexo
 Group:		Development/C
 Requires:	%{libname} = %{version}
+Requires:	%{lib2name} = %{version}
 Provides:	%{name}-devel = %{EVRD}
 Provides:	lib%{name}-devel = %{EVRD}
 Obsoletes:	%{_lib}exo1_0-devel
@@ -77,15 +90,19 @@ find %{buildroot} -name "*.la" -delete
 %{_datadir}/applications/*.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
-%{_iconsdir}/hicolor/*/categories/*.png
 %{_mandir}/man1/exo*
 %{_datadir}/pixmaps/exo-%{api}/exo-thumbnail-frame.png
 
 %files -n %{libname}
 %{_libdir}/lib%{name}-%{api}.so.%{major}*
 
+%files -n %{lib2name}
+%{_libdir}/lib%{name}-%{api2}.so.%{major}*
+
 %files -n %{develname}
 %doc %{_datadir}/gtk-doc/html/%{name}-%{api}/
 %{_libdir}/lib%{name}-%{api}.so
+%{_libdir}/lib%{name}-%{api2}.so
 %{_libdir}/pkgconfig/%{name}-%{api}.pc
+%{_libdir}/pkgconfig/%{name}-%{api2}.pc
 %{_includedir}/*
