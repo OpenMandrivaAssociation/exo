@@ -11,7 +11,7 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.12.2
+Version:	0.12.4
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -71,10 +71,10 @@ Headers, static libraries and documentation for libexo.
 %configure \
 	--disable-static
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # (tpg) already in %{_real_vendor}-xfce-config package
 rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
