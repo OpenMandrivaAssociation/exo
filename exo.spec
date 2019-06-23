@@ -24,6 +24,10 @@ BuildRequires:	pkgconfig(libxfce4util-1.0)
 BuildRequires:	pkgconfig(libxfce4ui-1)
 BuildRequires:	pkgconfig(libxfce4ui-2)
 BuildRequires:	pkgconfig(gio-unix-2.0)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gmodule-2.0)
+BuildRequires:	pkgconfig(gthread-2.0)
+BuildRequires:	pkgconfig(x11)
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	perl(URI::file)
 BuildRequires:	perl(URI::URL)
@@ -113,4 +117,3 @@ find %{buildroot} -name "*.la" -delete
 
 # locales
 %find_lang %{name}-%{api}
-
