@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   exo-0.12.4.tar.bz2: 2fda283fa85b79ad7c4f644e5d18879e1f2d57d2
+sources:
+  exo-0.12.6.tar.bz2: a7c38ac96f643bf0d62e779725503ed2eb39ee06
