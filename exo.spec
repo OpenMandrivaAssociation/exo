@@ -31,6 +31,7 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	perl(URI::Escape)
 BuildRequires:	perl(URI::file)
 BuildRequires:	perl(URI::URL)
+BuildRequires:  xfce4-dev-tools
 
 %description
 This is libexo, an extension library to Xfce, developed by os-cillation.
@@ -103,6 +104,7 @@ Headers, static libraries and documentation for libexo.
 %setup -q
 
 %build
+%xdt_autogen
 %configure
 %make_build
 
