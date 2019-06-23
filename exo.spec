@@ -17,6 +17,8 @@ License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source0:	http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
+BuildRequires:	gtk-doc
+BuildRequires:	gtk-doc-mkpdf
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
@@ -41,13 +43,13 @@ desktop development, libexo is targeted at application development.
 %files -f %{name}-%{api}.lang
 %doc AUTHORS README ChangeLog TODO
 %{_bindir}/exo*
-%{_libdir}/xfce4/%{name}-%{api}/exo-helper-%{api}
-%{_libdir}/xfce4/%{name}-%{api}/exo-compose-mail-%{api}
+%{_libdir}/xfce4/%{name}-%{api2}/exo-helper-%{api2}
+%{_libdir}/xfce4/%{name}/exo-compose-mail
 %{_datadir}/applications/*.desktop
 %{_datadir}/xfce4/helpers/*.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_mandir}/man1/exo*
-%{_datadir}/pixmaps/exo-%{api}/exo-thumbnail-frame.png
+%{_datadir}/pixmaps/exo/exo-thumbnail-frame.png
 
 #---------------------------------------------------------------------------
 
