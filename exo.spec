@@ -11,7 +11,7 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.12.8
+Version:	0.12.9
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
