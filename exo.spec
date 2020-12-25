@@ -39,16 +39,13 @@ While Xfce comes with quite a few libraries that are targeted at
 desktop development, libexo is targeted at application development.
 
 %files -f %{name}-%{api}.lang
-%doc AUTHORS README ChangeLog TODO
+%license COPYING
+%doc AUTHORS README* ChangeLog NEWS
 %{_bindir}/exo*
-%{_libdir}/xfce4/%{name}-%{api2}/exo-helper-%{api2}
-%{_libdir}/xfce4/%{name}/exo-compose-mail
-%{_datadir}/applications/*.desktop
-%{_datadir}/xfce4/helpers/*.desktop
-%{_iconsdir}/hicolor/*/apps/*.png
+%{_iconsdir}/hicolor/*/*/*.png
 %{_mandir}/man1/exo*
+%dir %{_datadir}/pixmaps/exo/
 %{_datadir}/pixmaps/exo/exo-thumbnail-frame.png
-
 #---------------------------------------------------------------------------
 
 %package -n %{libname}
@@ -60,7 +57,8 @@ Requires:	%{name} >= %{version}
 Main library for the libexo.
 
 %files -n %{libname}
-%{_libdir}/lib%{name}-%{api}.so.%{major}*
+%license COPYING.LIB
+%{_libdir}/libexo-%{api}.so.%{major}{,.*}
 
 #---------------------------------------------------------------------------
 
@@ -77,12 +75,10 @@ Conflicts:	%{name} < 0.7.0
 Headers, static libraries and documentation for libexo.
 
 %files -n %{develname}
-%doc %{_datadir}/gtk-doc/html/%{name}-%{api}/
-%{_libdir}/lib%{name}-%{api}.so
-%{_libdir}/lib%{name}-%{api2}.so
-%{_libdir}/pkgconfig/%{name}-%{api}.pc
-%{_libdir}/pkgconfig/%{name}-%{api2}.pc
-%{_includedir}/*
+%doc %{_datadir}/gtk-doc/html/exo-%{api}/
+%{_libdir}/libexo-%{api}.so
+%{_libdir}/pkgconfig/exo-%{api}.pc
+%{_includedir}/exo-%{api}/
 
 #---------------------------------------------------------------------------
 
