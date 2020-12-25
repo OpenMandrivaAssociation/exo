@@ -2,25 +2,24 @@
 %define _disable_rebuild_configure 1
 
 %define major 0
-%define api 1
+%define api 2
 %define libname %mklibname %{name} %{api} %{major}
 %define develname %mklibname %{name} -d
 
-%define api2 2
-%define lib2name %mklibname %{name} %{api2} %{major}
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	0.12.11
+Version:	4.16.0
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.xfce.org
 Source0:	http://archive.xfce.org/src/xfce/exo/%{url_ver}/%{name}-%{version}.tar.bz2
+
+BuildRequires:	intltool
 BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-mkpdf
 BuildRequires:	intltool
-BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libxfce4util-1.0)
 BuildRequires:	pkgconfig(libxfce4ui-1)
@@ -66,19 +65,6 @@ Main library for the libexo.
 
 #---------------------------------------------------------------------------
 
-%package -n %{lib2name}
-Summary:	An extension library to Xfce
-Group:		System/Libraries
-Requires:	%{name} >= %{version}
-
-%description -n %{lib2name}
-Main library for the libexo
-
-%files -n %{lib2name}
-%{_libdir}/lib%{name}-%{api2}.so.%{major}*
-
-#---------------------------------------------------------------------------
-
 %package -n %{develname}
 Summary:	Headers, static libraries and documentation for libexo
 Group:		Development/C
@@ -106,7 +92,6 @@ Headers, static libraries and documentation for libexo.
 %setup -q
 
 %build
-%xdt_autogen
 %configure
 %make_build
 
