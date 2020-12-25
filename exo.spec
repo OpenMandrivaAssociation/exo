@@ -69,7 +69,6 @@ Main library for the libexo.
 Summary:	Headers, static libraries and documentation for libexo
 Group:		Development/C
 Requires:	%{libname} = %{version}
-Requires:	%{lib2name} = %{version}
 Provides:	%{name}-devel = %{EVRD}
 Provides:	lib%{name}-devel = %{EVRD}
 Obsoletes:	%{_lib}exo1_0-devel
