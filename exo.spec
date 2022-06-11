@@ -32,6 +32,7 @@ BuildRequires:	perl(URI::Escape)
 BuildRequires:	perl(URI::file)
 BuildRequires:	perl(URI::URL)
 BuildRequires:  xfce4-dev-tools
+BuildRequires:	glibc-static-devel
 
 %description
 This is libexo, an extension library to Xfce, developed by os-cillation.
