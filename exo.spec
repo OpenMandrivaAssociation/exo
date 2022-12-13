@@ -43,7 +43,7 @@ desktop development, libexo is targeted at application development.
 %license COPYING
 %doc AUTHORS README* ChangeLog NEWS
 %{_bindir}/exo*
-%{_iconsdir}/hicolor/*/*/*.png
+#{_iconsdir}/hicolor/*/*/*.png
 %{_mandir}/man1/exo*
 %dir %{_datadir}/pixmaps/exo/
 %{_datadir}/pixmaps/exo/exo-thumbnail-frame.png
