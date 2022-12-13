@@ -9,7 +9,7 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	4.16.4
+Version:	4.17.4
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -39,10 +39,11 @@ This is libexo, an extension library to Xfce, developed by os-cillation.
 While Xfce comes with quite a few libraries that are targeted at
 desktop development, libexo is targeted at application development.
 
-%files -f %{name}-%{api}.lang
+%files -f %{name}.lang
 %license COPYING
 %doc AUTHORS README* ChangeLog NEWS
 %{_bindir}/exo*
+%{_sysconfdir}/xdg/xfce4/helpers.rc
 %{_iconsdir}/hicolor/*/*/*.png
 %{_mandir}/man1/exo*
 %dir %{_datadir}/pixmaps/exo/
@@ -94,10 +95,10 @@ Headers, static libraries and documentation for libexo.
 %make_install
 
 # (tpg) already in %{_real_vendor}-xfce-config package
-rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
+#rm -rf %{buildroot}%{_sysconfdir}/xdg/xfce4/helpers.rc
 
 # don't ship .la
 find %{buildroot} -name "*.la" -delete
 
 # locales
-%find_lang %{name}-%{api}
+%find_lang %{name}
