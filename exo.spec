@@ -9,7 +9,7 @@
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	4.17.4
+Version:	4.18.0
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
