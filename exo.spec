@@ -4,12 +4,13 @@
 %define major 0
 %define api 2
 %define libname %mklibname %{name} %{api} %{major}
+%define oldlibname %mklibname %{name} 2 0
 %define develname %mklibname %{name} -d
 
 
 Summary:	An extension library to Xfce desktop environment
 Name:		exo
-Version:	4.18.0
+Version:	4.20.0
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -53,6 +54,7 @@ desktop development, libexo is targeted at application development.
 Summary:	An extension library to Xfce
 Group:		System/Libraries
 Requires:	%{name} >= %{version}
+%rename %{oldlibname}
 
 %description -n %{libname}
 Main library for the libexo.
@@ -84,7 +86,7 @@ Headers, static libraries and documentation for libexo.
 #---------------------------------------------------------------------------
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %configure
