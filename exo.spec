@@ -3,7 +3,7 @@
 
 %define major 0
 %define api 2
-%define libname %mklibname %{name} %{api} %{major}
+%define libname %mklibname %{name}
 %define oldlibname %mklibname %{name} 2 0
 %define develname %mklibname %{name} -d
 
